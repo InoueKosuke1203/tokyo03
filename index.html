@@ -83,6 +83,25 @@ body { margin: 0; padding: 0; }
 		touch-action: none;
     }
 
+	#locate {
+        display: inline-block;
+        position: relative;
+        width: 20px;
+        height: 20px;
+		top: -200px;
+		left: -300px;
+        padding: 10px;
+        border: 1px solid #f9ad9b;
+        border-radius: 100%;
+        -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+        box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+        /* font-size: 15px; */
+        /* font-weight: 100; */
+        color: #fff;
+        background: #f9ad9b;
+		touch-action: none;
+    }
+
     /* 経路表示用のボタン */
 	.btn-control {
 		font: bold 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -325,6 +344,7 @@ body { margin: 0; padding: 0; }
 		<button id="fly3">出発地点</button>
 		<button id="fly2">◃前の目印</button>
 		<button id="fly">次の目印▹</button>
+		<button id="locate"></button>
 	<!-- </div> -->
 </div>
 <script>
@@ -957,6 +977,15 @@ body { margin: 0; padding: 0; }
             showUserHeading: true
         })
     );
+
+	navigator.geolocation.watchPosition((position) => {
+		document.getElementById('locate').addEventListener('click', () => {
+				map.flyTo({
+					center: [position.coords.longitude, position.coords.latitude],
+					zoom: 19
+				});
+		});
+	});
 
 </script>
 
