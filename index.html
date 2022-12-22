@@ -121,24 +121,15 @@ body { margin: 0; padding: 0; }
 </div>
 <script>
     const start = [139.7358731944004, 35.69619298857934];
-	const houki = [ 139.7356612951247, 35.69604965233734];
+	const houki = [139.7356612951247, 35.69604965233734];
+	const parking = [139.73609210952483, 35.696065695332386];
     const oshibotan = [139.73548698320417, 35.696549871444766];
     const mirror = [139.7346316192155, 35.69631718440582];
-    const tree = [ 139.73468260451946, 35.69587066011135];
+    const tree = [139.73468260451946, 35.69587066011135];
 	const nisecha = [139.7352647678877, 35.69505383366686];
 	const red = [139.73579012496242, 35.694620892768846];
     const konkuri = [139.73518947896864, 35.69400331684581];
     const goal = [139.73479915553676, 35.69457938679085];
-
-	// const oshibotanCross = [ 139.73537857737506, 35.6965327132175];
-	// const takeStraight = [139.73512530628844, 35.696491230960014];
-	// const mirrorT = [139.73476189341997, 35.69635660614076];
-	// const michinari = [139.73486991586185, 35.696135407878586];
-	// const treeT = [139.73451509202346, 35.695864476421036];
-	// const road1 = [139.73509267789512, 35.695387911998836];
-	// const road2 = [139.73548852952456, 35.69505315042917];
-	// const redCross = [ 139.73602119410617, 35.69460804215606];
-	// const konkuriT = [139.73540878688985, 35.6941520890507];
 
 	const center = [139.73486895474028, 35.69576790257631];
 	const secondcenter = [139.7349545809001, 35.69527005123519];
@@ -245,7 +236,7 @@ body { margin: 0; padding: 0; }
     document.getElementById('fly').addEventListener('click', () => {
         if(n == 0){
             map.flyTo({
-            center: start,
+            center: [139.73581964290955, 35.6960119310284],
             zoom: 17.5,
             padding: 40,
 		    pitch: 0,
@@ -392,115 +383,148 @@ body { margin: 0; padding: 0; }
 
     document.getElementById('fly2').addEventListener('click', () => {
         if(n == 8){
-            map.flyTo({
-			center: center,
-            zoom: 19,
+			map.flyTo({
+            center: fourthcenter,
+            zoom: 16.3,
             padding: 40,
 		    pitch: 0,
-		    bearing: 225,
+		    bearing: -120,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
             });
             n = n - 1
-			document.getElementById('target').textContent = '突き当り　　　　　　　右'
-            document.getElementById('picture').src = tRight
-			document.getElementById('direction').src = straight
+			document.getElementById('target').textContent = 'コンクリ塀'
+            document.getElementById('picture').src = pickonkuri
+			document.getElementById('direction').src = tRight
+
+			popup1 = new mapboxgl.Marker(el1)
+    		.setLngLat(konkuri)
+    		.addTo(map)
         }
         else if(n == 7){
-            map.flyTo({
-			center: center,
-            zoom: 19.5,
+			map.flyTo({
+            center: thirdcenter,
+            zoom: 16.3,
             padding: 40,
 		    pitch: 0,
-		    bearing: -130,
+		    bearing: 135,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
             });
             n = n - 1
-			document.getElementById('target').textContent = '大きな木　　　　　　　左'
-            document.getElementById('picture').src = sLeft
-			document.getElementById('direction').src = straight
+			document.getElementById('target').textContent = '赤い建物'
+            document.getElementById('picture').src = picred
+			document.getElementById('direction').src = nextRight
+
+			popup1 = new mapboxgl.Marker(el1)
+    		.setLngLat(red)
+    		.addTo(map)
         }
         else if(n == 6){
-            map.flyTo({
-			center: center,
-            zoom: 19.5,
+			map.flyTo({
+            center: thirdcenter,
+            zoom: 16.3,
             padding: 40,
 		    pitch: 0,
-		    bearing: -210,
+		    bearing: 135,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
             });
             n = n - 1
-			document.getElementById('target').textContent = '道なり　　　　　　　　右'
-            document.getElementById('picture').src = right
+			document.getElementById('target').textContent = '茶色の建物'
+            document.getElementById('picture').src = picnisecha
 			document.getElementById('direction').src = straight
+
+			popup1 = new mapboxgl.Marker(el1)
+    		.setLngLat(nisecha)
+    		.addTo(map)
         }
         else if(n == 5){
-            map.flyTo({
-			center: center,
-            zoom: 19.5,
+			map.flyTo({
+            center: secondcenter,
+            zoom: 16.3,
             padding: 40,
 		    pitch: 0,
-		    bearing: -115,
+		    bearing: -120,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
             });
             n = n - 1
-			document.getElementById('target').textContent = '突き当り　　　　　　　左'
-            document.getElementById('picture').src = tLeft
-			document.getElementById('direction').src = straight
+			document.getElementById('target').textContent = '大きな木'
+            document.getElementById('picture').src = pictree
+			document.getElementById('direction').src = sLeft
+
+			popup1 = new mapboxgl.Marker(el1)
+    		.setLngLat(tree)
+    		.addTo(map)
         }
 		else if(n == 4){
             map.flyTo({
-			center: center,
-            zoom: 19,
+            center: secondcenter,
+            zoom: 16.3,
             padding: 40,
 		    pitch: 0,
-		    bearing: -115,
+		    bearing: -120,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
             });
             n = n - 1
-			document.getElementById('target').textContent = '直進'
-            document.getElementById('picture').src = straight
-			document.getElementById('direction').src = straight
+			document.getElementById('target').textContent = 'カーブミラー'
+            document.getElementById('picture').src = picmirror
+			document.getElementById('direction').src = tLeft
+
+			popup1 = new mapboxgl.Marker(el1)
+    		.setLngLat(mirror)
+    		.addTo(map)
         }
         else if(n == 3){
             map.flyTo({
-			center: center,
-            zoom: 19,
+            center: center,
+            zoom: 16.3,
             padding: 40,
 		    pitch: 0,
 		    bearing: -40,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
             });
-            n = n - 1
+            n = n - 1,
 			document.getElementById('target').textContent = '押しボタン式信号'
-            document.getElementById('picture').src = crossLeft
-			document.getElementById('direction').src = straight
+            document.getElementById('picture').src = picoshibotan
+			document.getElementById('direction').src = crossLeft
+			
+			popup1 = new mapboxgl.Marker(el1)
+    		.setLngLat(oshibotan)
+    		.addTo(map)
         }
         else if(n == 2){
             map.flyTo({
-			center: start,
-            zoom: 19,
+            center: [139.73581964290955, 35.6960119310284],
+            zoom: 17.5,
             padding: 40,
 		    pitch: 0,
-		    bearing: 0,
+		    bearing: -40,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
             });
-            n = n - 1
+            n = n - 1,
 			document.getElementById('target').textContent = 'セブンイレブン'
-			document.getElementById('picture').src = straight
+			document.getElementById('picture').src = picseven
 			document.getElementById('direction').src = straight
+
+			popup1 = new mapboxgl.Marker(el1)
+    		.setLngLat(start)
+    		.addTo(map)
         }
         else if(n == 1){
             map.flyTo({
-			center: start,
-            zoom: 19,
+            center: [139.73581964290955, 35.6960119310284],
+            zoom: 17.5,
             padding: 40,
 		    pitch: 0,
-		    bearing: 0,
+		    bearing: -40,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
             });
+            n = n - 1,
 			document.getElementById('target').textContent = 'セブンイレブン'
-			document.getElementById('picture').src = straight
+			document.getElementById('picture').src = picseven
 			document.getElementById('direction').src = straight
+
+			popup1 = new mapboxgl.Marker(el1)
+    		.setLngLat(start)
+    		.addTo(map)
         }
     });
 
@@ -516,7 +540,7 @@ body { margin: 0; padding: 0; }
 	// .setPopup(popup1)
 	.addTo(map);
 
-	const popup2 = new mapboxgl.Popup({ offset: 25 }).setText(
+	const popup2 = new mapboxgl.Popup({ offset: 25 , closeButton: false}).setText(
 		'新日本法規出版'
 	);
 	const el2 = document.createElement('div');
@@ -524,17 +548,19 @@ body { margin: 0; padding: 0; }
 	new mapboxgl.Marker(el2)
 	.setLngLat(houki)
 	.setPopup(popup2)
-	.addTo(map);
+	.addTo(map)
+	.togglePopup();
 
-	const popup3 = new mapboxgl.Popup({ offset: 25 }).setText(
-		'押しボタン式信号'
+	const popup3 = new mapboxgl.Popup({ offset: 25 , closeButton: false}).setText(
+		'駐車場'
 	);
 	const el3 = document.createElement('div');
 	el3.id = 'pic-startrand';
 	new mapboxgl.Marker(el3)
-	.setLngLat(oshibotan)
+	.setLngLat(parking)
 	.setPopup(popup3)
-	.addTo(map);
+	.addTo(map)
+	.togglePopup();
 
 
     // 位置情報
@@ -543,9 +569,7 @@ body { margin: 0; padding: 0; }
             positionOptions: {
                 enableHighAccuracy: true
             },
-            // When active the map will receive updates to the device's location as it changes.
             trackUserLocation: true,
-            // Draw an arrow next to the location dot to indicate which direction the device is heading.
             showUserHeading: true
         })
     );
